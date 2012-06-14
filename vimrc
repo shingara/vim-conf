@@ -125,6 +125,8 @@ let g:syntastic_quiet_warnings=1
 set modeline
 set modelines=10
 
+set cursorline
+
 " Default color scheme
 color desert
 
@@ -150,4 +152,22 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Autocomplete Fabricator gem
 autocmd User Rails Rnavcommand fabricator spec/fabricators -suffix=_fabricator.rb -default=model()
 
+" Autocomplete Fabricator gem
+autocmd User Rails Rnavcommand decorator app/decorators -suffix=_decorator.rb -default=model()
+
 set foldmethod=syntax
+
+let g:Powerline_symbols = 'fancy'
+set t_Co=256
+
+let Tlist_Auto_Update = 'true'
+let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+
+"spell check when writing commit logs
+autocmd filetype svn,*commit* set spell
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|vendor\/bundle$\|tmp$\|public\/system$\|',
+  \ 'file': '\.exe$\|\.so$\|\.dll$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
