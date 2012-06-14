@@ -71,7 +71,7 @@ endif
 
 
 " CTags
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
+map <Leader>rt :!/usr/local/bin/ctags --extra=+f -R *<CR><CR>
 map <C-\> :tnext<CR>
 
 function s:setupWrapping()
