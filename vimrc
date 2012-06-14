@@ -1,6 +1,8 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
+let mapleader = ","
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
