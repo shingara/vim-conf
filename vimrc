@@ -93,7 +93,11 @@ au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupWrapping()
 au BufNewFile,BufRead *.json set ft=javascript
 au BufRead,BufNewFile *.txt call s:setupWrapping()
 
+" Mustache configuration
 au BufNewFile,BufRead *.mustache        setf mustache
+
+" Yaml Configuration
+au BufRead,BufNewFile *.{yml,yaml} set foldmethod=indent
 
 " make Python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python set softtabstop=4 tabstop=4 shiftwidth=4 textwidth=79
