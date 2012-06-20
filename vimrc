@@ -167,7 +167,7 @@ let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
 autocmd filetype svn,*commit* set spell
 
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|vendor\/bundle$\|tmp$\|public\/system$\|',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$\',
   \ 'file': '\.exe$\|\.so$\|\.dll$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
