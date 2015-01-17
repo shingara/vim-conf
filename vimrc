@@ -29,6 +29,7 @@ Bundle 'tpope/vim-commentary'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'mattn/webapi-vim'
+Bundle 'fatih/vim-go'
 
 set number
 syntax on
