@@ -55,6 +55,7 @@ set smartcase
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 
 " Status bar
 set laststatus=2
@@ -71,8 +72,6 @@ endif
 
 
 " CTags
-map <Leader>rt :!/usr/local/bin/ctags --extra=+f -R *<CR><CR>
-map <C-\> :tnext<CR>
 
 function s:setupWrapping()
   set wrap
@@ -160,14 +159,17 @@ set foldmethod=syntax
 let g:Powerline_symbols = 'fancy'
 set t_Co=256
 
-let Tlist_Auto_Update = 'true'
-let Tlist_Ctags_Cmd = '/usr/local/bin/ctags'
+let Tlist_Auto_Update = 1
+let Tlist_Ctags_Cmd = 'ctags'
 
 "spell check when writing commit logs
 autocmd filetype svn,*commit* set spell
 
+" let g:ctrlp_user_command = 'find %s -type f'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\',
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$|tmp$',
   \ 'file': '\.exe$\|\.so$\|\.dll$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
+let g:ctrlp_max_depth = 40
+let g:ctrlp_max_files = 0
