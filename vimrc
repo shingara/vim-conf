@@ -30,6 +30,7 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'vim-scripts/taglist.vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'fatih/vim-go'
+Bundle 'christianrondeau/vim-base64'
 
 set number
 syntax on
