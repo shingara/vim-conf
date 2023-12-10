@@ -1,0 +1,132 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+set number
+syntax on
+set autoread
+set ruler
+set encoding=utf8
+
+" Whitespace stuff
+set nowrap
+set tabstop=2
+set softtabstop=2
+set expandtab
+set list listchars=tab:\ \ ,trail:·
+
+" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Tab completion
+set wildmode=list:longest,list:full
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
+
+" Status bar
+set laststatus=2
+
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/seoul256.vim'
+" Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'scrooloose/nerdtree'
+" Plug 'msanders/snipmate.vim'
+Plug 'godlygeek/tabular'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-commentary'
+Plug 'vim-ruby/vim-ruby'
+Plug 'vim-scripts/taglist.vim'
+Plug 'ngmy/vim-rubocop'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-git'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-surround'
+Plug 'christianrondeau/vim-base64'
+" Plugin to manage golang help system
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" Plugin to improve the HL code. Can be update by TSInstall or TSUpdate
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+call plug#end()
+
+" change wrapping in some kind of file
+function s:setupWrapping()
+  set wrap
+  set wrapmargin=2
+  set textwidth=72
+endfunction
+
+" Thorfile, Rakefile, Vagrantfile and Gemfile are Ruby
+au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru,Guardfile}    set ft=ruby
+
+" md, markdown, and mk are markdown and define buffer-local preview
+au BufRead,BufNewFile *.{md,markdown,mdown,mkd,mkdn} call s:setupWrapping()
+
+" add json syntax highlighting
+au BufNewFile,BufRead *.json set ft=javascript
+au BufRead,BufNewFile *.txt call s:setupWrapping()
+
+" Yaml Configuration
+au BufRead,BufNewFile *.{yml,yaml} set foldmethod=indent
+
+" allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" load the plugin and indent settings for the detected filetype
+filetype plugin indent on
+
+" Use modeline overrides
+" The system to check on top of file if there are override of mode
+set modeline
+set modelines=5
+
+" Patter ignore when use the completion in search file
+set wig=*.o,*.obj,*~,#*#,*.pyc,*.tar*,*.avi,*.ogg,*.mp3
+
+" No save backup by .swp
+set nowb
+set noswapfile
+set noar
+
+" Delete all whitespace in end of line
+autocmd BufWritePre * :%s/\s\+$//e
+
+set foldmethod=syntax
+
+"spell check when writing commit logs
+autocmd filetype svn,*commit* set spell
+
+let g:vimrubocop_rubocop_cmd = 'bundle exec rubocop '
+
+
+" ctrlp configuration
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.git|node_modules|tmp\/cache|tmp\/storage',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+"let g:ctrlp_user_command = 'find %s -type f | grep -v -e "\.git$|node_modules$"'
+let g:ctrlp_max_files = 0 " On big repository no limit is helpfull
+
+
+if has("autocmd")
+  augroup templates
+    autocmd BufNewFile *.rb 0r ~/.vim/templates/skeleton.rb
+  augroup END
+endif
+
+
+" Launch gopls when Go files are in use
+let g:LanguageClient_serverCommands = {
+       \ 'go': ['gopls']
+       \ }
+" Run gofmt on save
+autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
