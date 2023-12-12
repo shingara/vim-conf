@@ -52,6 +52,14 @@ Plug 'christianrondeau/vim-base64'
 " Plugin to manage golang help system
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+"Terraform plugin
+Plug 'hashivim/vim-terraform'
+
+" Terraform plugin configuration
+let g:terraform_align = 1 " Use tabular to tabular terraform system
+let g:terraform_fmt_on_save = 1 " Force Terraform fmt on save
+let g:hcl_align = 1 " Align setting with tabular
+
 " Plugin to improve the HL code. Can be update by TSInstall or TSUpdate
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()

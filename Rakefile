@@ -10,4 +10,13 @@ task :neovim_install do
   `ln -s ~/vim-conf/neovimrc ~/.config/nvim/init.vim`
   `curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
   `nvim -es -u init.vim -i NONE -c "PlugInstall" -c "qa"`
+
+  if ENV['HOMEBREW_CELLAR']
+    # You are on MacOS
+    `brew install hashicorp/tap/terraform-ls` # Terraform lsp
+    `brew install tflint` # Install tflint ( Linter of Terraform )
+  else
+    # TODO: Install terraform lsp
+    `curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash` # Tflint linter of Terraform
+  end
 end
