@@ -10,6 +10,7 @@ task :neovim_install do
   `ln -s ~/vim-conf/neovimrc ~/.config/nvim/init.vim`
   `curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
   `nvim -es -u init.vim -i NONE -c "PlugInstall" -c "qa"`
+  `go install golang.org/x/tools/gopls@latest` # Install gopls to go ServerLanguage
 
   if ENV['HOMEBREW_CELLAR']
     # You are on MacOS

@@ -51,6 +51,15 @@ Plug 'tpope/vim-surround'
 Plug 'christianrondeau/vim-base64'
 " Plugin to manage golang help system
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'github/copilot.vim', { 'do': ':Copilot setup' }
+
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+
+" (Optional) Multi-entry selection UI.
+Plug 'junegunn/fzf'
 
 "Terraform plugin
 Plug 'hashivim/vim-terraform'
@@ -137,4 +146,4 @@ let g:LanguageClient_serverCommands = {
        \ 'go': ['gopls']
        \ }
 " Run gofmt on save
-autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+" autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
