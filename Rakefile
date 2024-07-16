@@ -8,6 +8,7 @@ end
 task :neovim_install do
   `mkdir -p ~/.config/nvim/autoload`
   `ln -s ~/vim-conf/neovimrc ~/.config/nvim/init.vim`
+  `ln -s ~/vim-conf/lua ~/.config/nvim/lua`
   `curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim`
   `nvim -es -u init.vim -i NONE -c "PlugInstall" -c "qa"`
   `go install golang.org/x/tools/gopls@latest` # Install gopls to go ServerLanguage

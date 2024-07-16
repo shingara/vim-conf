@@ -39,7 +39,6 @@ Plug 'godlygeek/tabular'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-commentary'
 Plug 'vim-ruby/vim-ruby'
-Plug 'vim-scripts/taglist.vim'
 Plug 'ngmy/vim-rubocop'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
@@ -52,6 +51,7 @@ Plug 'christianrondeau/vim-base64'
 " Plugin to manage golang help system
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'github/copilot.vim', { 'do': ':Copilot setup' }
+Plug 'EdenEast/nightfox.nvim' " Theme with colorblind maybe
 
 Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
@@ -71,6 +71,18 @@ let g:hcl_align = 1 " Align setting with tabular
 
 " Plugin to improve the HL code. Can be update by TSInstall or TSUpdate
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'L3MON4D3/LuaSnip'
+
+Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
+
 call plug#end()
 
 " change wrapping in some kind of file
@@ -147,3 +159,11 @@ let g:LanguageClient_serverCommands = {
        \ }
 " Run gofmt on save
 " autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
+
+runtime lua/nightfox_init.lua
+runtime lua/lsp_zero_config.lua
+
+" mfussenegger/nvim-lint
+" stevearc/conform.nvim => formatter
+" nvim-cmp => autocompletion
+" oil.nviim => file_explorer
