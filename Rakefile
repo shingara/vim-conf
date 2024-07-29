@@ -17,6 +17,8 @@ task :neovim_install do
     # You are on MacOS
     `brew install hashicorp/tap/terraform-ls` # Terraform lsp
     `brew install tflint` # Install tflint ( Linter of Terraform )
+    `brew install fd` # Install need by telescope nvim plugin
+    `brew install ripgrep` # Install need by telescope nvim plugin
   else
     # TODO: Install terraform lsp
     `curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash` # Tflint linter of Terraform

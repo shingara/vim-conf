@@ -29,25 +29,34 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 " Status bar
 set laststatus=2
 
+" Map leader
+let mapleader = ";"
+
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/seoul256.vim'
-" Plug 'junegunn/goyo.vim'
-Plug 'junegunn/limelight.vim'
-Plug 'scrooloose/nerdtree'
-" Plug 'msanders/snipmate.vim'
-Plug 'godlygeek/tabular'
+
+Plug 'junegunn/limelight.vim' " Help to highlight the current line Use by :Limelight => https://github.com/junegunn/limelight.vim
+
+Plug 'scrooloose/nerdtree' " Define the tree file explorer => https://github.com/preservim/nerdtree
+Plug 'Xuyuanp/nerdtree-git-plugin' " Plugin to see difference in the tree file explorer of Git information
+
+Plug 'godlygeek/tabular' " Manage the align text => https://github.com/godlygeek/tabular :help tabular
+
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tpope/vim-commentary'
+
+Plug 'tpope/vim-commentary' " Help to comment a line : comment line with gc => https://github.com/tpope/vim-commentary
+
 Plug 'vim-ruby/vim-ruby'
 Plug 'ngmy/vim-rubocop'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-git'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
-Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-surround'
-Plug 'christianrondeau/vim-base64'
+
+Plug 'tpope/vim-fugitive' " Big plugin to manage git => https://github.com/tpope/vim-fugitive
+Plug 'tpope/vim-git' " Plugin to help with git commit information with command :DiffGitCached to see information
+
+Plug 'tpope/vim-dispatch' " Plugin to help launching task outside vim and get the result in buffer => https://github.com/tpope/vim-dispatch
+
+Plug 'tpope/vim-surround' " Plugin to help made char between other char use with S in visual mode with char After  => https://github.com/tpope/vim-surround
+
 " Plugin to manage golang help system
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'github/copilot.vim', { 'do': ':Copilot setup' }
@@ -59,15 +68,11 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 
 " (Optional) Multi-entry selection UI.
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 
 "Terraform plugin
 Plug 'hashivim/vim-terraform'
 
-" Terraform plugin configuration
-let g:terraform_align = 1 " Use tabular to tabular terraform system
-let g:terraform_fmt_on_save = 1 " Force Terraform fmt on save
-let g:hcl_align = 1 " Align setting with tabular
 
 " Plugin to improve the HL code. Can be update by TSInstall or TSUpdate
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -82,6 +87,9 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'L3MON4D3/LuaSnip'
 
 Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v3.x'}
+
+Plug 'nvim-lua/plenary.nvim' " Required for telescope and simple function lua set
+Plug 'nvim-telescope/telescope.nvim' " Change from CtrlP ?
 
 call plug#end()
 
@@ -162,8 +170,26 @@ let g:LanguageClient_serverCommands = {
 
 runtime lua/nightfox_init.lua
 runtime lua/lsp_zero_config.lua
+runtime lua/nvim-treesitter_config.lua
+runtime lua/telescope_config.lua
 
 " mfussenegger/nvim-lint
 " stevearc/conform.nvim => formatter
 " nvim-cmp => autocompletion
 " oil.nviim => file_explorer
+
+
+"" Configuration of NERDTree
+nnoremap <Leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+
+
+" Terraform plugin configuration
+let g:terraform_align = 1 " Use tabular to tabular terraform system
+let g:terraform_fmt_on_save = 1 " Force Terraform fmt on save
+let g:hcl_align = 1 " Align setting with tabular
+
+" :Telescope find_files theme=ivy
